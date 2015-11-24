@@ -20,7 +20,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins
-" Plugin 'bling/vim-airline'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
 " do not open dir in new tab
@@ -36,7 +35,6 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-obsession'
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
-" Plugin 'airblade/vim-gitgutter'
 " Plugin 'gcavallanti/vim-noscrollbar'
 Plugin 'Raimondi/delimitMate'
 Plugin 'Yggdroot/indentLine'
@@ -71,12 +69,6 @@ colorscheme desertink
 set encoding=utf-8
 set t_Co=256
 
-" folding
-" automatic folding based on indentation level
-nnoremap <Space> za
-set foldmethod=indent
-set foldnestmax=2
-
 " GUI
 set go-=T
 set go-=m
@@ -84,20 +76,6 @@ set go-=r
 set go-=R
 set go-=l
 set go-=L
-
-" vim-gitgutter
-" After changing colorscheme...
-" hi clear SignColumn
-" In vim-airline, only display 'hunks' if the diff is non-zero
-" let g:airline#extensions#hunk#non_zero_only = 1
-
-
-" let g:airline_powerline_fonts = 1
-" if !exists('g:airline_symbols')
-    " let g:airline_symbols = {}
-" endif
-" let g:airline_symbols.space = "\ua0"
-" let g:airline#extensions#tabline#enabled = 1
 
 " syntastic
 let g:syntastic_quiet_messages = { "type": "style" }
