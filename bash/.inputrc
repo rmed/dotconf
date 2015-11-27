@@ -1,0 +1,11 @@
+# Cycle forward
+"\e[Z": menu-complete
+# TAB: menu-complete
+# Display one column with matches
+set completion-display-width 1
+
+# Coloring for tab completion
+set colored-stats on
+
+# Include system wide settings
+$include /etc/inputrc
