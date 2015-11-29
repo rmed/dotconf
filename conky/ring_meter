@@ -1,0 +1,114 @@
+-- vim: syntax=lua
+--Conky settings
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_inner_margin = 0,
+    border_outer_margin = 0,
+    cpu_avg_samples = 2,
+    default_color = '333333',
+    default_outline_color = 'green',
+    default_shade_color = 'red',
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+	double_buffer = true,
+    gap_x = 25,
+    gap_y = 25,
+    minimum_height = 700,
+    minimum_width = 1300,
+    net_avg_samples = 2,
+	no_buffers = true,
+    override_utf8_locale = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    --own_window_transparent = true,
+    own_window_type = 'desktop',
+    --own_window_type = 'normal',
+    own_window_hints = 'undecorated, sticky, skip_taskbar, skip_pager, below',
+	temperature_unit = 'celsius',
+	text_buffer_size = 2048,
+    update_interval = 3,
+    uppercase = false,
+    use_xft = true,
+    xftalpha = 0.9,
+    --xftfont = 'Play:normal:size=7',
+
+    color0 = 'FFFFFF',
+    color1 = 'FFFFFF',
+    color2 = '1994D1',
+    --color3 = '1994D1',
+
+    --lua_load = '~/.conky/custom_ring_meter/conky_draw.lua',
+    lua_load = './conky_draw.lua',
+    lua_draw_hook_post = 'main',
+
+    own_window_colour = '000000',
+    own_window_argb_value = 0,
+    own_window_argb_visual = true
+}
+
+
+conky.text = [[
+${font Michroma:size=15}${color0}${goto 65}${voffset 30}/${font Michroma:size=10}${color0}${goto 190}data
+
+${font Play:normal:size=9}${color1}${goto 35}${voffset -10}R ${goto 60}${diskio_read sda7}${goto 175}R ${goto 200}${diskio_read sda5}
+
+${font Play:normal:size=9}${color1}${goto 35}${voffset -10}W ${goto 60}${diskio_write sda7}${goto 175}W ${goto 200}${diskio_write sda5}
+
+
+${font Play:normal:size=9}${voffset 10}${goto 25}${color1}Used${goto 70}${fs_used /}${goto 165}Used${goto 210}${fs_used /media/data}
+
+${font Play:normal:size=9}${voffset -10}${goto 25}${color1}Free${goto 70}${fs_free /}${goto 165}Free${goto 210}${fs_free /media/data}
+
+
+${font Play:normal:size=9}${voffset 60}${goto 160}${color1}${top_mem mem_res 1}${goto 220}${top_mem name 1}
+
+${font Play:normal:size=9}${voffset -10}${goto 160}${color1}${top_mem mem_res 2}${goto 220}${top_mem name 2}
+
+${font Play:normal:size=9}${voffset -10}${goto 160}${color1}${top_mem mem_res 3}${goto 220}${top_mem name 3}
+
+
+${font Michroma:size=10}${voffset -105}${goto 350}${color1}wlan0 ${font Play:normal:size=9}(${if_up wlan0}${wireless_essid wlan0}${else}offline${endif})${goto 550}${voffset -4}${font Michroma:size=10}eth0 ${font Play:normal:size=9}(${if_up eth0}up${else}down${endif})
+
+${font Play:normal:size=9}${goto 355}IP:${goto 400}${addr wlan0}${goto 555}IP:${goto 600}${addr eth0}
+
+${font Play:normal:size=9}${voffset -10}${goto 355}${if_up wlan0}rate:${goto 400}${wireless_bitrate wlan0}${endif}${goto 555}${if_existing /proc/net/route eth0}up:${goto 600}${upspeed eth0}/s${endif}
+
+${font Play:normal:size=9}${voffset -10}${goto 355}${if_up wlan0}up:${goto 400}${upspeed wlan0}/s${endif}${goto 555}${if_existing /proc/net/route eth0}down:${goto 600}${downspeed eth0}/s${endif}
+
+${font Play:normal:size=9}${voffset -10}${goto 355}${if_up wlan0}down:${goto 400}${downspeed wlan0}/s${endif}
+
+
+${font Play:normal:size=9}${voffset -40}${goto 110}${color1}SWAP ${goto 170}${swap} / ${swapmax}
+
+${font Play:normal:size=9}${voffset -10}${goto 110}${color1}RAM${goto 170}${mem} / ${memmax}
+
+
+${font Play:normal:size=9}${voffset 32}${goto 240}${color1}NVIDIA: ${if_existing /proc/acpi/bbswitch ON}ON${else}OFF${endif}
+
+
+${font Play:normal:size=9}${voffset -43}${goto 10}${color1}CPU 0${goto 53}${cpu cpu0}%
+
+${font Play:normal:size=9}${goto 10}${color1}CPU 1${goto 53}${cpu cpu1}%
+
+${font Play:normal:size=9}${goto 10}${color1}CPU 2${goto 53}${cpu cpu2}%
+
+${font Play:normal:size=9}${goto 10}${color1}CPU 3${goto 53}${cpu cpu3}%
+
+
+${font Play:normal:size=10}${voffset -45}${goto 150}${color1}${acpitemp} º C
+
+
+${font Play:normal:size=9}${voffset -55}${goto 265}${color1}CPU 4${goto 310}${cpu cpu4}%
+
+${font Play:normal:size=9}${goto 265}${color1}CPU 5${goto 310}${cpu cpu5}%
+
+${font Play:normal:size=9}${goto 265}${color1}CPU 6${goto 310}${cpu cpu6}%
+
+${font Play:normal:size=9}${goto 265}${color1}CPU 7${goto 310}${cpu cpu7}%
+
+
+${font Michroma:size=10}${color0}${goto 20}${voffset 10}BAT${font Play:normal:size=10}${goto 80} ${if_existing /sys/class/power_supply/BAT0/present}${battery_percent BAT0}%${else}offline${endif}
+]]
