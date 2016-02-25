@@ -1,0 +1,30 @@
+# Path
+set folder         = /var/mail
+set spoolfile      = "+personal/inbox"
+
+# Configs
+set mbox_type      = Maildir
+set mailcap_path   = ~/.mutt/mailcap
+set editor         = vim
+set config_charset = utf-8
+set sort_aux       = last-date-received # sort threads by last msg received
+
+# GPG
+set pgp_auto_decode   = yes
+set pgp_use_gpg_agent = yes
+set crypt_verify_sig  = yes
+set crypt_use_gpgme   = yes
+
+# Address book
+set query_command  ="abook --mutt-query '%s'"
+macro index,pager  A "|abook --add-email-quietn" 'add sender to abook'
+
+# Offlineimap
+macro index,pager  s "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/scripts/mail-sync.sh &<enter><enter-command>set wait_key<enter><sync-mailbox>"
+
+# GPG
+bind compose p pgp-menu
+macro compose Y pfy "send mail without GPG"
+
+# Hooks when changing dirs
+folder-hook personal/* source ~/.mutt/accounts/personal

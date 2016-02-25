@@ -1,0 +1,11 @@
+set sendmail       = "/usr/bin/msmtp -a personal"
+set use_from       = yes
+set realname       = "NAME SURNAME"
+set from           = MY_MAIL@gmail.com
+set envelope_from  = yes
+set mbox           = "+personal/inbox"
+set postponed      = "+personal/drafts"
+set record         = "+personal/sent"
+
+set pgp_sign_as    = PGP_KEY_ID
+set crypt_autosign = yes

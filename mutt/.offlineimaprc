@@ -1,0 +1,56 @@
+[general]
+accounts = personal
+pythonfile = ~/.mutt/scripts/pythonkeyring.py
+
+# Identify mailboxes
+[mbnames]
+enabled = no
+filename = ~/.mailboxes
+header = "mailboxes "
+sep = " "
+footer = "n"
+
+#
+# Account
+#
+# localrepository : the maildir to be synced via IMAP (local).
+# remoterepository : the remote IMAP to be synced (remote).
+# status_backend : status cache: plain, sqlite.
+#
+# maxage : days to synchronize
+#
+[Account personal]
+localrepository = personal_local
+remoterepository = personal_remote
+status_backend = sqlite
+maxage = 30
+
+#
+# Repository
+#
+# type : local repository can be: Maildir, IMAP, Gmail.
+# localfolders : the folder where to save the emails.
+#
+# remotehost : the remote host of IMAP server.
+# remoteuser : the remote user of IMAP server.
+# remotepasseval : use python-keyring for managing the keys
+# ssl : use SSL connection on port 993, otherwise 143.
+#
+# cert_fingerprint : gnutls-cli -p 993 imap.gmail.com (SHA1 fingerprint)
+#
+# nametrans : name INBOX as "inbox", etc
+# folderfilter : get only specific folders
+[Repository personal_local]
+type = Maildir
+localfolders = /var/mail/personal
+nametrans = lambda folder: {'inbox': 'INBOX', 'sent': '[Gmail]/Enviados',}.get(folder, folder)
+
+[Repository personal_remote]
+type = Gmail
+ssl = yes
+remoteuser = MY_MAIL@gmail.com
+remotepasseval = keyring.get_password('mail', 'MY_MAIL@gmail.com')
+# GMail changes fingerprint
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+nametrans = lambda folder: {'INBOX': 'inbox', '[Gmail]/Enviados': 'sent',}.get(folder, folder)
+folderfilter = lambda folder: folder in ['INBOX', '[Gmail]/Enviados']

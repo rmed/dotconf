@@ -1,0 +1,3 @@
+image/*; ~/.mutt/scripts/mutt-open.py '%s'
+# image/*; ~/.mutt/scripts/muttimage.sh %s ; copiousoutput
+application/pdf; ~/.mutt/scripts/mutt-open.py '%s'
