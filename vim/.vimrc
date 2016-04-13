@@ -1,17 +1,54 @@
-" Switch on syntax highlighting.
+" general stuff
 syntax on
+syntax enable
 
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" Line numbers
-set nu!
+set nu! " line numbers
 set mouse=a
 
 set nocompatible
 filetype off
+filetype plugin indent on     " required!
+filetype plugin on
 
+"set cursorline
+"set cursorcolumn
+set encoding=utf-8
+set t_Co=256
+
+set laststatus=2
+set noshowmode
+
+" set colorcolumn=80
+
+" tab navigation
+map [1;5D <C-Left>
+map [1;5C <C-Right>
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-Left> <Esc>:tabprevious<CR>i
+inoremap <C-Right>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+map <C-w> :tabclose<CR>
+
+" Wrapped line navigation
+nnoremap k gk
+nnoremap j gj
+
+" GUI
+set go-=T
+set go-=m
+set go-=r
+set go-=R
+set go-=l
+set go-=L
+
+
+" Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -22,31 +59,38 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
+
 " do not open dir in new tab
 " Plugin 'Nopik/vim-nerdtree-direnter'
 " Plugin 'jistr/vim-nerdtree-tabs'
 " Plugin 'Valloric/YouCompleteMe'
 " Plugin 'ervandew/supertab'
+
 Plugin 'flazz/vim-colorschemes'
-Plugin 'toupeira/vim-desertink'
-" Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
 Plugin 'spolu/dwm.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-obsession'
 Plugin 'godlygeek/tabular'
 Plugin 'ntpeters/vim-better-whitespace'
+
 " Plugin 'gcavallanti/vim-noscrollbar'
+
 Plugin 'Raimondi/delimitMate'
 Plugin 'Yggdroot/indentLine'
 Plugin 'groenewege/vim-less'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'tpope/vim-markdown'
 Plugin 'reedes/vim-pencil'
+Plugin 'davidhalter/jedi-vim'
+
 " Plugin 'Shougo/neocomplete.vim'
 
 call vundle#end()
 
-filetype plugin indent on     " required!
-filetype plugin on
+" vim-colorschemes
+colorscheme desertink
+" colorscheme flattown
 
 " Vim-latexsuite
 " set grepprg=grep\ -nH\ $*
@@ -61,80 +105,21 @@ filetype plugin on
 let g:pencil#textwidth = 79
 let g:airline_section_x = '%{PencilMode()}'
 
-syntax enable
-
-colorscheme desertink
-"set cursorline
-"set cursorcolumn
-set encoding=utf-8
-set t_Co=256
-
-" GUI
-set go-=T
-set go-=m
-set go-=r
-set go-=R
-set go-=l
-set go-=L
-
 " syntastic
+let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_quiet_messages = { "type": "style" }
 let g:syntastic_python_checkers = ['pyflakes']
 
-" show indentation
+" indentLine (show indentation)
 let g:indentLine_char = '|'
 let g:indentLine_color_term = 239
 
-set laststatus=2
-set noshowmode
-
+" NERDTree
 map <C-y> :NERDTreeToggle<CR>
+
+" Commentary
 map <C-x> <Plug>CommentaryLine
 vmap <C-x> <Plug>Commentary
-
-" tab navigation
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-Left> <Esc>:tabprevious<CR>i
-inoremap <C-Right>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
-map <C-w> :tabclose<CR>
-
-" " neocomplete
-" let g:acp_enableAtStartup = 0
-" let g:neocomplete#enable_at_startup = 1
-" " Use smartcase.
-" let g:neocomplete#enable_smart_case = 1
-" " Set minimum syntax keyword length.
-" let g:neocomplete#sources#syntax#min_keyword_length = 3
-" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" " Plugin key-mappings
-" inoremap <expr><C-g>     neocomplete#undo_completion()
-" inoremap <expr><C-l>     neocomplete#complete_common_string()
-" " Recommended key-mappings.
-" " " <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-" function! s:my_cr_function()
-"    return neocomplete#close_popup() . "\<CR>"
-"    " For no inserting <CR> key.
-"    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-" endfunction
-" " TAB completion
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" inoremap <expr><C-y>  neocomplete#close_popup()
-" inoremap <expr><C-e>  neocomplete#cancel_popup()
-" " Omni completion
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" " Disable preview pormpt
-" set completeopt-=preview
 
 " lightline.vim
 let g:lightline = {
@@ -146,10 +131,14 @@ let g:lightline = {
       \ 'subseparator': { 'left': '', 'right': '' }
       \ }
 
+" vim-markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh']
+
 " tmux compatibility
 map <Esc>[B <Down>
 
 if &term =~ '256color'
+" if &term =~ '^screen'
 " disable Background Color Erase (BCE) so that color schemes
 " render properly when inside 256-color tmux and GNU screen.
 " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
