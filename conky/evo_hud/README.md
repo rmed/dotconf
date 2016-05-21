@@ -14,5 +14,5 @@ bargraphs and rings, as well as Viga font.
 Place the directory somewhere and run:
 
 ~~~shell
-$ conky -c PATH_TO_RING_METER
+$ conky -c <path to evo_hud>
 ~~~
