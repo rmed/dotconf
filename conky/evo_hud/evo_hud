@@ -1,0 +1,98 @@
+-- vim: syntax=lua
+--Conky settings
+conky.config = {
+    alignment = 'top_left',
+    background = false,
+    border_inner_margin = 0,
+    border_outer_margin = 0,
+    border_width = 0,
+    cpu_avg_samples = 2,
+    default_color = '333333',
+    default_outline_color = '191919',
+    default_shade_color = '000000',
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = true,
+	double_buffer = true,
+
+    -- gap to border of screen
+    gap_x = 0,
+    gap_y = 50,
+
+    minimum_height = 768,
+    minimum_width = 1366,
+    net_avg_samples = 2,
+	no_buffers = true,
+    override_utf8_locale = true,
+    own_window = true,
+    own_window_class = 'Conky',
+    --own_window_transparent = true,
+    own_window_type = 'desktop',
+    --own_window_type = 'normal',
+    own_window_hints = 'undecorated, sticky, skip_taskbar, skip_pager, below',
+	temperature_unit = 'celsius',
+	text_buffer_size = 2048,
+    update_interval = 3,
+    uppercase = false,
+    use_xft = true,
+    xftalpha = 0.9,
+
+    color0 = '292929',
+    color1 = 'FFFFFF',
+    color2 = '000000',
+    --color3 = '1994D1',
+
+    lua_load = 'conky_draw.lua',
+    lua_draw_hook_post = 'main',
+
+    own_window_colour = '000000',
+    own_window_argb_value = 0,
+    own_window_argb_visual = true
+}
+
+
+conky.text = [[
+${font Viga:size=12}${color1}${voffset 24}${goto 15}root${font Viga:size=9}${color1}${goto 35}${voffset 18}${fs_free /} / ${fs_size /}
+
+${font Viga:size=12}${color1}${goto 15}data${font Viga:size=9}${color1}${goto 35}${voffset 18}${fs_free /media/data} / ${fs_size /media/data}
+
+
+${font Viga:size=8}${voffset -132}${goto 600}${color0}${cpu cpu0}%${goto 735}${cpu cpu1}%
+
+${font Viga:size=8}${goto 585}${color0}${cpu cpu4}%${goto 750}${cpu cpu5}%
+
+${font Viga:size=12}${voffset 14}${goto 670}${color0}${acpitemp}
+
+${font Viga:size=8}${voffset -8}${goto 585}${color0}${cpu cpu6}%${goto 750}${cpu cpu7}%
+
+${font Viga:size=8}${voffset 4}${goto 600}${color0}${cpu cpu2}%${goto 735}${cpu cpu3}%
+
+${font Viga:size=10}${goto 660}${color0}${if_existing /proc/acpi/bbswitch ON}NVIDIA${endif}
+
+
+${font Viga:size=12}${color1}${voffset -45}${goto 15}ram${font Viga:size=9}${color1}${goto 35}${voffset 18}${mem} / ${memmax}
+
+${font Viga:size=12}${color1}${goto 15}swap${font Viga:size=9}${color1}${goto 35}${voffset 18}${swap} / ${swapmax}
+
+
+${font Viga:size=9}${goto 60}${color1}${top_mem mem_res 1}${goto 120}${top_mem name 1}
+
+${font Viga:size=9}${goto 60}${color1}${top_mem mem_res 2}${goto 120}${top_mem name 2}
+
+${font Viga:size=9}${goto 60}${color1}${top_mem mem_res 3}${goto 120}${top_mem name 3}
+
+
+${font Viga:size=10}${voffset -160}${goto 1120}${color1}${if_up wlan0}${wireless_essid wlan0}${else}offline${endif}${goto 1260}${if_up eth0}UP${else}DOWN${endif}
+
+${font Viga:size=9}${goto 1100}IP: ${addr wlan0}${goto 1230}IP: ${addr eth0}
+
+${font Viga:size=9}${voffset -5}${goto 1100}${if_up wlan0}rate: ${wireless_bitrate wlan0}${endif}${goto 1230}${if_existing /proc/net/route eth0}up: ${upspeed eth0}/s${endif}
+
+${font Viga:size=9}${voffset -5}${goto 1100}${if_up wlan0}up: ${upspeed wlan0}${endif}${goto 1230}${if_existing /proc/net/route eth0}down: ${downspeed eth0}/s${endif}
+
+${font Viga:size=9}${voffset -5}${goto 1100}${if_up wlan0}down: ${downspeed wlan0}${endif}
+
+
+${font Viga:size=9}${color0}${voffset -150}${goto 670}${if_existing /sys/class/power_supply/BAT0/present}${battery_percent BAT0}${endif}
+]]
