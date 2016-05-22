@@ -64,9 +64,9 @@ ${font Viga:size=8}${goto 585}${color0}${cpu cpu4}%${goto 750}${cpu cpu5}%
 
 ${font Viga:size=12}${voffset 14}${goto 670}${color0}${acpitemp}
 
-${font Viga:size=8}${voffset -8}${goto 585}${color0}${cpu cpu6}%${goto 750}${cpu cpu7}%
+${font Viga:size=8}${voffset -8}${goto 585}${color0}${cpu cpu7}%${goto 750}${cpu cpu6}%
 
-${font Viga:size=8}${voffset 4}${goto 600}${color0}${cpu cpu2}%${goto 735}${cpu cpu3}%
+${font Viga:size=8}${voffset 4}${goto 600}${color0}${cpu cpu3}%${goto 735}${cpu cpu2}%
 
 ${font Viga:size=10}${goto 660}${color0}${if_existing /proc/acpi/bbswitch ON}NVIDIA${endif}
 
@@ -83,7 +83,7 @@ ${font Viga:size=9}${goto 60}${color1}${top_mem mem_res 2}${goto 120}${top_mem n
 ${font Viga:size=9}${goto 60}${color1}${top_mem mem_res 3}${goto 120}${top_mem name 3}
 
 
-${font Viga:size=10}${voffset -160}${goto 1120}${color1}${if_up wlan0}${wireless_essid wlan0}${else}offline${endif}${goto 1260}${if_up eth0}UP${else}DOWN${endif}
+${font Viga:size=10}${voffset -160}${goto 1120}${color1}${if_up wlan0}${wireless_essid wlan0}${else}offline${endif}${goto 1260}${if_up eth0}up${else}down${endif}
 
 ${font Viga:size=9}${goto 1100}IP: ${addr wlan0}${goto 1230}IP: ${addr eth0}
 
