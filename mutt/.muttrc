@@ -9,6 +9,26 @@ set editor         = vim
 set config_charset = utf-8
 set sort_aux       = last-date-received # sort threads by last msg received
 
+# Sidebar
+set sidebar_visible=yes
+set sidebar_width=20
+set sidebar_format="%B%*  %?N?(%N)?%?F?[%F]?"
+set sidebar_short_path=yes
+
+mailboxes ~/.mutt/alias/personal ~/.mutt/alias/universidad
+color sidebar_new yellow default
+
+# ctrl-shift-n, ctrl-shift-p to select next, prev folder
+# ctrl-shift-o to open selected folder
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+
+# Html mails are bad...
+auto_view text/html
+alternative_order text/plain text/enriched text/html
+
 # GPG
 set pgp_auto_decode   = yes
 set pgp_use_gpg_agent = yes
@@ -17,7 +37,11 @@ set crypt_use_gpgme   = yes
 
 # Address book
 set query_command  ="abook --mutt-query '%s'"
-macro index,pager  A "|abook --add-email-quietn" 'add sender to abook'
+macro index,pager  A "|abook --add-email-quiet" 'add sender to abook'
+set mailcap_path   = ~/.mutt/mailcap
+
+# Search function (Mairix)
+macro index        / "<change-folder>=mairix<enter><shell-escape>mairix " "Change the folder with search results and search with Mairix."
 
 # Offlineimap
 macro index,pager  s "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/scripts/mail-sync.sh &<enter><enter-command>set wait_key<enter><sync-mailbox>"
@@ -28,3 +52,4 @@ macro compose Y pfy "send mail without GPG"
 
 # Hooks when changing dirs
 folder-hook personal/* source ~/.mutt/accounts/personal
+folder-hook universidad/* source ~/.mutt/accounts/universidad
