@@ -43,7 +43,7 @@ maxage = 30
 [Repository personal_local]
 type = Maildir
 localfolders = /var/mail/personal
-nametrans = lambda folder: {'inbox': 'INBOX', 'sent': '[Gmail]/Enviados',}.get(folder, folder)
+nametrans = lambda folder: {'inbox': 'INBOX', 'sent': '[Gmail]/Enviados', 'archive': '[Gmail]/Todos',}.get(folder, folder)
 
 [Repository personal_remote]
 type = Gmail
@@ -52,5 +52,5 @@ remoteuser = MY_MAIL@gmail.com
 remotepasseval = keyring.get_password('mail', 'MY_MAIL@gmail.com')
 # GMail changes fingerprint
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
-nametrans = lambda folder: {'INBOX': 'inbox', '[Gmail]/Enviados': 'sent',}.get(folder, folder)
-folderfilter = lambda folder: folder in ['INBOX', '[Gmail]/Enviados']
+nametrans = lambda folder: {'INBOX': 'inbox', '[Gmail]/Enviados': 'sent', '[Gmail]/Todos': 'archive',}.get(folder, folder)
+folderfilter = lambda folder: folder in ['INBOX', '[Gmail]/Enviados', '[Gmail]/Todos']

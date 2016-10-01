@@ -1,3 +1,4 @@
+set folder         = "/var/mail/personal"
 set sendmail       = "/usr/bin/msmtp -a personal"
 set use_from       = yes
 set realname       = "NAME SURNAME"

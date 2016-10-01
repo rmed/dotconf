@@ -41,10 +41,19 @@ macro index,pager  A "|abook --add-email-quiet" 'add sender to abook'
 set mailcap_path   = ~/.mutt/mailcap
 
 # Search function (Mairix)
-macro index        / "<change-folder>=mairix<enter><shell-escape>mairix " "Change the folder with search results and search with Mairix."
+macro index        / "<change-folder>$HOME/.mutt/alias/mairix<enter><shell-escape>mairix " "Change the folder with search results and search with Mairix."
 
 # Offlineimap
 macro index,pager  s "<enter-command>unset wait_key<enter><shell-escape>~/.mutt/scripts/mail-sync.sh &<enter><enter-command>set wait_key<enter><sync-mailbox>"
+
+# Archive messages
+macro index,pager  y "<save-message>=archive<enter>" "Archive Message"
+
+# Navigate sub-boxes
+macro index gi "<change-folder>=inbox<enter>" "Go to inbox"
+macro index ga "<change-folder>=archive<enter>" "Go to all mail"
+macro index gs "<change-folder>=sent<enter>" "Go to sent mail"
+macro index gd "<change-folder>=drafts<enter>" "Go to drafts"
 
 # GPG
 bind compose p pgp-menu
