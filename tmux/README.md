@@ -29,10 +29,11 @@ This will launch currently active tmux session or a new one if there are none.
 - Configuration for 256 colors
 - **Vim compatibility**
 - **Full screen:** `prefix+z`
-- **Split horizontal:** `prefix+s`
-- **Split vertical:** `prefix+v`
-- **Move accross panels:** `prefix+{h,j,k,l}` (works with Vim!)
+- **Split horizontal:** `prefix+-`
+- **Split vertical:** `prefix+_`
+- **Move accross panels:** `Ctrl+{h,j,k,l}` (works with Vim!)
 - **Resize panel:** `prefix+{H,J,K,L}`
 - Powerline style
 - Activity notification
 - **Session storage and resurrection**
+- Mouse support
